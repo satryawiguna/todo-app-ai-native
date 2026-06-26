@@ -6,17 +6,30 @@ alwaysApply: false
 
 # Testing Rules
 
-## Unit & Integration (Vitest + RTL)
-- Test file bersebelahan dengan file yang ditest: `Component.test.tsx`
+## Baca Juga (Source of Truth)
+
+- `.github/instructions/testing.instructions.md` — full testing patterns dan conventions
+
+## Custom Agent
+
+- **Testing** (`.github/agents/testing.agent.md`) — delegasikan semua pekerjaan testing
+
+## Key Rules (Ringkasan)
+
+### Unit & Integration (Vitest + RTL)
+
+- Test file bersebelahan: `Component.test.tsx`
 - Gunakan `@testing-library/user-event` untuk simulasi interaksi
 - Query priority: `getByRole` > `getByLabelText` > `getByText` > `getByTestId`
 - Mock API menggunakan MSW (Mock Service Worker)
 
-## E2E (Playwright)
+### E2E (Playwright)
+
 - File di `tests/e2e/`
 - Cover critical user journeys: login, create task, update status, logout
 - Gunakan `data-testid` hanya sebagai last resort
 
-## Naming
-- describe: nama komponen atau fungsi yang ditest
-- it/test: "should [expected behavior] when [condition]"
+### Naming
+
+- `describe`: nama komponen atau fungsi yang ditest
+- `it`/`test`: "should [expected behavior] when [condition]"

@@ -1,10 +1,21 @@
 # Agent Instructions — Todo Frontend
 
 ## Project Overview
+
 Todo App frontend. Next.js 14 App Router + TypeScript + Tailwind CSS + shadcn/ui.
 Solo developer + occasional collaborator.
 
+## Custom Agents
+
+| Agent        | File                               | Purpose                                                                        |
+| ------------ | ---------------------------------- | ------------------------------------------------------------------------------ |
+| **Frontend** | `.github/agents/frontend.agent.md` | All frontend work — components, features, services, tests, reviews             |
+| **Testing**  | `.github/agents/testing.agent.md`  | All testing work — unit tests, integration tests, E2E tests, coverage analysis |
+
+Use the **Frontend** agent for general frontend tasks and the **Testing** agent for test-specific work. Select from the agent picker or let the parent agent delegate.
+
 ## Key Files to Read First (Urutan Prioritas)
+
 1. `.github/copilot-instructions.md` — coding standards, folder structure, rules
 2. `../todo-shared-ai-native/architecture/api-contracts.md` — API response format
 3. `../todo-shared-ai-native/business/business-rules.md` — business rules & validasi
@@ -12,15 +23,17 @@ Solo developer + occasional collaborator.
 5. `src/types/` — global TypeScript types
 
 ## Task Guides
-| Task | Panduan |
-|------|---------|
-| Buat komponen baru | `.github/prompts/create-component.prompt.md` |
-| Buat feature baru | `.github/prompts/create-feature.prompt.md` |
-| Review PR | `.github/prompts/review-pr.prompt.md` |
-| Tambah API call | `.github/instructions/api.instructions.md` |
-| Tulis test | `.github/instructions/testing.instructions.md` |
+
+| Task               | Panduan                                        |
+| ------------------ | ---------------------------------------------- |
+| Buat komponen baru | `.github/prompts/create-component.prompt.md`   |
+| Buat feature baru  | `.github/prompts/create-feature.prompt.md`     |
+| Review PR          | `.github/prompts/review-pr.prompt.md`          |
+| Tambah API call    | `.github/instructions/api.instructions.md`     |
+| Tulis test         | `.github/instructions/testing.instructions.md` |
 
 ## Folder Structure Quick Reference
+
 ```
 src/
 ├── app/          → Next.js pages & layouts (App Router)
@@ -33,6 +46,7 @@ src/
 ```
 
 ## Never Do
+
 - Jangan modifikasi file di `src/components/ui/`
 - Jangan gunakan `any` type
 - Jangan hardcode URL, API key, atau credential apapun

@@ -6,28 +6,45 @@ alwaysApply: true
 
 # Frontend Rules
 
-## Next.js App Router
-- Gunakan App Router pattern — tidak ada `pages/` directory
-- Semua komponen adalah Server Component by default
-- Tambahkan `'use client'` hanya jika menggunakan hooks, event listener, atau browser API
-- Letakkan `'use client'` di baris pertama, sebelum semua imports
+## Baca Juga (Source of Truth)
 
-## TypeScript
-- Strict mode aktif — tidak ada `any` type
-- Definisikan props interface secara eksplisit untuk setiap komponen
-- Gunakan `type` untuk union/intersection, `interface` untuk object shapes
+- `.github/copilot-instructions.md` — semua coding standards dan folder structure
+- `.github/instructions/components.instructions.md` — aturan komponen
+- `.github/instructions/api.instructions.md` — aturan API dan data fetching
 
-## Styling
-- Tailwind utility classes untuk semua styling
-- Gunakan `cn()` dari `@/lib/utils` untuk conditional className
-- Komponen shadcn/ui di `src/components/ui/` jangan dimodifikasi langsung
+## Custom Agents
 
-## Import
+- **Frontend** (`.github/agents/frontend.agent.md`) — delegasikan semua pekerjaan frontend
+- **Testing** (`.github/agents/testing.agent.md`) — delegasikan semua pekerjaan testing
+
+## Task Prompts
+
+- `/create-component`, `/create-feature`, `/review-pr` di `.github/prompts/`
+
+## Key Rules (Ringkasan)
+
+### Next.js App Router
+
+- Gunakan App Router — tidak ada `pages/` directory
+- Server Component by default, `'use client'` hanya untuk hooks/events/browser API
+
+### TypeScript
+
+- Strict mode — tidak ada `any` type
+- Props interface eksplisit, `type` untuk union/intersection, `interface` untuk object shapes
+
+### Styling
+
+- Tailwind utility classes + `cn()` dari `@/lib/utils` untuk conditional className
+- Komponen shadcn/ui di `src/components/ui/` jangan dimodifikasi
+
+### Import
+
 - Path alias `@/` untuk semua import dari `src/`
-- Urutkan import: React → third-party → internal (`@/`) → relative
+- Urutan: React → third-party → `@/` → relative
 
-## State Management
-- Zustand untuk global client state
-- TanStack Query untuk server state (fetch, cache, sync)
+### State Management
+
+- Zustand untuk global client state, TanStack Query untuk server state
 - `useState` hanya untuk local UI state
-- Jangan gunakan `localStorage` untuk menyimpan token auth
+- Jangan gunakan `localStorage` untuk token auth
