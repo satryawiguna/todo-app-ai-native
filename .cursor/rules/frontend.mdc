@@ -1,0 +1,33 @@
+---
+description: "Frontend coding rules for Next.js + TypeScript + Tailwind"
+globs: ["src/**/*.tsx", "src/**/*.ts"]
+alwaysApply: true
+---
+
+# Frontend Rules
+
+## Next.js App Router
+- Gunakan App Router pattern — tidak ada `pages/` directory
+- Semua komponen adalah Server Component by default
+- Tambahkan `'use client'` hanya jika menggunakan hooks, event listener, atau browser API
+- Letakkan `'use client'` di baris pertama, sebelum semua imports
+
+## TypeScript
+- Strict mode aktif — tidak ada `any` type
+- Definisikan props interface secara eksplisit untuk setiap komponen
+- Gunakan `type` untuk union/intersection, `interface` untuk object shapes
+
+## Styling
+- Tailwind utility classes untuk semua styling
+- Gunakan `cn()` dari `@/lib/utils` untuk conditional className
+- Komponen shadcn/ui di `src/components/ui/` jangan dimodifikasi langsung
+
+## Import
+- Path alias `@/` untuk semua import dari `src/`
+- Urutkan import: React → third-party → internal (`@/`) → relative
+
+## State Management
+- Zustand untuk global client state
+- TanStack Query untuk server state (fetch, cache, sync)
+- `useState` hanya untuk local UI state
+- Jangan gunakan `localStorage` untuk menyimpan token auth
