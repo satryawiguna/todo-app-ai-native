@@ -1,54 +1,40 @@
-# Agent Instructions — Todo Frontend
+# Todo App — Frontend Next.js 15
 
-## Project Overview
+## Pengetahuan Domain
+Sebelum mengimplementasikan fitur apa pun, baca basis pengetahuan bersama:
+→ `../todo-shared-ai-native-orchestration/`
+  - `product/` untuk kebutuhan dan kriteria acceptance
+  - `architecture/api-contracts.md` untuk bentuk API (sumber kebenaran tipe)
+  - `standards/` untuk konvensi coding
 
-Todo App frontend. Next.js 14 App Router + TypeScript + Tailwind CSS + shadcn/ui.
-Solo developer + occasional collaborator.
+## Konvensi Next.js 15
+- App Router dengan Server Components secara default
+- Tambahkan "use client" HANYA saat menggunakan hooks, state, atau event handler
+- Server Components untuk fetching data; Client Components untuk interaktivitas
 
-## Custom Agents
+## Pola React Query
+- Query keys: ["todos", filters], ["todo", id]
+- Mutasi menginvalidasi query terkait saat berhasil
+- Optimistic update untuk delete (hapus dari cache, rollback jika error)
+- `staleTime: 30s` untuk stale-while-revalidate
 
-| Agent        | File                               | Purpose                                                                        |
-| ------------ | ---------------------------------- | ------------------------------------------------------------------------------ |
-| **Frontend** | `.github/agents/frontend.agent.md` | All frontend work — components, features, services, tests, reviews             |
-| **Testing**  | `.github/agents/testing.agent.md`  | All testing work — unit tests, integration tests, E2E tests, coverage analysis |
+## Pola Zustand
+- Satu store per concern (todoFilterStore, uiStore)
+- Gunakan selector untuk menghindari re-render tidak perlu
+- Filter state di-drive oleh URL search params
 
-Use the **Frontend** agent for general frontend tasks and the **Testing** agent for test-specific work. Select from the agent picker or let the parent agent delegate.
+## Struktur Komponen
+- Nama file PascalCase sesuai nama komponen
+- Tipe spesifik komponen diletakkan di file yang sama
+- Ekstrak primitif UI yang dapat digunakan kembali ke components/ui/
 
-## Key Files to Read First (Urutan Prioritas)
+## Validasi Form
+- Gunakan Zod schema (lib/validators.ts)
+- Validasi di frontend SEBELUM mengirim ke API
+- Tampilkan error per field, bukan generic
 
-1. `.github/copilot-instructions.md` — coding standards, folder structure, rules
-2. `../todo-shared-ai-native/architecture/api-contracts.md` — API response format
-3. `../todo-shared-ai-native/business/business-rules.md` — business rules & validasi
-4. `src/lib/api-client.ts` — axios instance dan interceptor setup
-5. `src/types/` — global TypeScript types
-
-## Task Guides
-
-| Task               | Panduan                                        |
-| ------------------ | ---------------------------------------------- |
-| Buat komponen baru | `.github/prompts/create-component.prompt.md`   |
-| Buat feature baru  | `.github/prompts/create-feature.prompt.md`     |
-| Review PR          | `.github/prompts/review-pr.prompt.md`          |
-| Tambah API call    | `.github/instructions/api.instructions.md`     |
-| Tulis test         | `.github/instructions/testing.instructions.md` |
-
-## Folder Structure Quick Reference
-
-```
-src/
-├── app/          → Next.js pages & layouts (App Router)
-├── components/   → Shared components
-│   └── ui/       → shadcn/ui (JANGAN dimodifikasi)
-├── features/     → Feature modules (task, auth)
-├── lib/          → Utilities, api-client, zod schemas
-├── services/     → API call functions
-└── types/        → Global TypeScript types
-```
-
-## Never Do
-
-- Jangan modifikasi file di `src/components/ui/`
-- Jangan gunakan `any` type
-- Jangan hardcode URL, API key, atau credential apapun
-- Jangan fetch API langsung di dalam komponen
-- Jangan simpan sensitive data di localStorage
+## Testing
+- Komponen: React Testing Library — render + screen queries
+- Hook: renderHook dari @testing-library/react
+- E2E: Playwright — happy path + error cases
+- Mock API dengan MSW — handler harus cocok dengan api-contracts.md

@@ -1,0 +1,15 @@
+# Todo App — Windsurf Rules
+
+Frontend Next.js 15 untuk aplikasi Todo.
+
+## Konvensi
+- Server Components secara default — 'use client' hanya untuk interaktivitas
+- Tipe frontend mencerminkan `../todo-shared-ai-native-orchestration/architecture/api-contracts.md`
+- React Query untuk server state, Zustand untuk client state
+- Zod untuk validasi form
+- Tailwind CSS untuk styling
+
+## Referensi
+- Domain knowledge: `../todo-shared-ai-native-orchestration/`
+- API contracts: `../todo-shared-ai-native-orchestration/architecture/api-contracts.md`
+- Standards: `../todo-shared-ai-native-orchestration/standards/`

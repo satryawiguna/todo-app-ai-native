@@ -1,0 +1,15 @@
+---
+alwaysApply: false
+description: "Pola Next.js 15 untuk Todo App frontend"
+globs: "src/**/*.tsx"
+---
+
+# Next.js Frontend Patterns
+
+- **Server Components** default — fetching data, layout, static content
+- **Client Components** ('use client') — interaktivitas, hooks, state, event handlers
+- **React Query** — server state (useQuery, useMutation)
+- **Zustand** — client state (filter, UI state)
+- **Zod** — form validation (lib/validators.ts)
+- **Tailwind CSS** — utility-first styling
+- Tipe di `src/types/todo.ts` — MENCERMINKAN `../todo-shared-ai-native-orchestration/architecture/api-contracts.md`
